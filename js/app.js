@@ -17,8 +17,9 @@ const storeHours = [
   "7pm"
 ];
 
-function storeBuilder(location, minCust, maxCust, avgSoldPer) {
-  const storeObj = { //
+function storeBuilder(location, minCust, maxCust, avgSoldPer) { // MAIN FUNCTION
+  
+  const storeObj = { // OBJECT LITERAL
     location,
     minCust,
     maxCust,
@@ -26,16 +27,15 @@ function storeBuilder(location, minCust, maxCust, avgSoldPer) {
     hourlySales: [],
     totalSales: 0
   };
-
   calcHourlySales(storeObj);
   calcTotalSales(storeObj);
   buildSalesSheet(storeObj);
+
 } // END STOREBUILDER FUNCTION -- called at bottom of app.js
 
-function calcTotalSales(storeObj) {
-  for (let i = 0; i < storeObj.hourlySales.length; i++) {
-    storeObj.totalSales += storeObj.hourlySales[i];
-  }
+function randoNum(min, max) {
+  let range = max - min + 1;
+  return (Math.floor(Math.random() * range) + min);
 }
 
 function calcHourlySales(storeObj) {
@@ -45,28 +45,30 @@ function calcHourlySales(storeObj) {
   }
 }
 
-function randoNum(min, max) {
-  let range = max - min + 1;
-  return (Math.floor(Math.random() * range) + min);
+function calcTotalSales(storeObj) {
+  for (let i = 0; i < storeObj.hourlySales.length; i++) {
+    storeObj.totalSales += storeObj.hourlySales[i];
+  }
 }
 
-function buildSalesSheet(storeObj) {
-  const salesSheet = document.getElementById("sales-sheet");
 
-  const location = document.createElement("h2");
+function buildSalesSheet(storeObj) {
+  const salesSheet = document.getElementById("sales-sheet"); // Grab PARENT 
+
+  const location = document.createElement("h2"); // Create HEADING
   salesSheet.appendChild(location);
   location.textContent = storeObj.location;
   
-  const listOfSales = document.createElement("ul");
+  const listOfSales = document.createElement("ul"); // Create LIST
   salesSheet.appendChild(listOfSales);
 
-  for (let i = 0; i < storeHours.length; i++) {
+  for (let i = 0; i < storeHours.length; i++) {  // Create LIST ITEMS
     const listElem = document.createElement("li");
     let salesEntry = `${storeHours[i]}: ${storeObj.hourlySales[i]} cookies`;
     listOfSales.appendChild(listElem);
     listElem.textContent = salesEntry;
   }
-  const totalCookies = document.createElement("li");
+  const totalCookies = document.createElement("li");  //  TOTAL
   listOfSales.appendChild(totalCookies);
   totalCookies.textContent = `Total: ${storeObj.totalSales} cookies`;
 }
