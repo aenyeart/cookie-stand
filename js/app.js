@@ -1,23 +1,29 @@
 'use strict'
 
-function calcTotalSales() {
-  
+function calcTotalSales(storeObj) {
+  for (let i = 0; i < storeObj.hourlySales.length; i++) {
+    storeObj.totalSales += storeObj.hourlySales[i];
+  }
+   
 }
 
-const storeLocation = {
+function calcHourlySales(storeObj) {
+  for (let i = 0; i < storeObj.storeHours; i++) {
+    let hourlyCust = randoNum(storeObj.minCust, storeObj.maxCust);
+    storeObj.hourlySales[i] = Math.round(storeObj.avgSoldPer * hourlyCust);
+  }
+}
+
+const storeLocation = { //really wish
   storeHours: 14,
   minCust: 23,
   maxCust: 65,
   avgSoldPer: 6.3,
   hourlySales: [],
-  calcHourlySales: function() {
-    for (let i = 0; i < this.storeHours; i++) {
-      let hourlyCust = randoNum(this.minCust, this.maxCust);
-      this.hourlySales[i] = Math.round(this.avgSoldPer * hourlyCust);
-    }
-  },
+  totalSales: 0
 };
-storeLocation.calcHourlySales();
+calcHourlySales(storeLocation);
+calcTotalSales(storeLocation);
 
 function randoNum(min, max) {
   let range = max - min + 1;
