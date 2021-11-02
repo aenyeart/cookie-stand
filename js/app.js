@@ -1,4 +1,6 @@
 'use strict'
+
+
 const storeHours = [
   "6am",
   "7am",
@@ -14,7 +16,10 @@ const storeHours = [
   "5pm",
   "6pm",
   "7pm"
-  ]
+]
+
+const salesSheet = document.getElementById("sales-sheet");
+
 
 function calcTotalSales(storeObj) {
   for (let i = 0; i < storeObj.hourlySales.length; i++) {
@@ -39,20 +44,24 @@ const storeObj = { //
 
 calcHourlySales(storeObj);
 calcTotalSales(storeObj);
+buildSalesSheet(storeObj);
 
 function randoNum(min, max) {
   let range = max - min + 1;
   return (Math.floor(Math.random() * range) + min);
 }
 
-const salesSheet = document.getElementById("sales-sheet");
-const listOfSales = document.createElement("ul");
+function buildSalesSheet() {
+  const listOfSales = document.createElement("ul");
+  salesSheet.appendChild(listOfSales);
 
-salesSheet.appendChild(listOfSales);
-
-for (let i = 0; i < storeHours.length; i++) {
-  const listElem = document.createElement("li");
-  let salesEntry = `${storeHours[i]}: ${storeObj.hourlySales[i]} cookies`;
-  listOfSales.appendChild(listElem);
-  listElem.textContent = salesEntry;
+  for (let i = 0; i < storeHours.length; i++) {
+    const listElem = document.createElement("li");
+    let salesEntry = `${storeHours[i]}: ${storeObj.hourlySales[i]} cookies`;
+    listOfSales.appendChild(listElem);
+    listElem.textContent = salesEntry;
+  }
+  const totalCookies = document.createElement("li");
+  listOfSales.appendChild(totalCookies);
+  totalCookies.textContent = `Total: ${storeObj.totalSales} cookies`;
 }
