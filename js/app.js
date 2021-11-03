@@ -17,17 +17,17 @@ const storeHours = [
   "7pm"
 ];
 const salesSheet = document.getElementById("sales-sheet"); // PARENT initialized to global
-let hourlyGrandTotal = [];
+let hourlyGrandTotal = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 let dailyGrandTotal = 0;
 
 function Store(location, minCust, maxCust, avgSoldPer) { // Construct FUNCTION
 
   this.location = location, 
-  this.minCust = minCust,
-  this.maxCust = maxCust,
   this.avgSoldPer = avgSoldPer,
-  this.hourlySales = [],
-  this.totalSales = 0,
+  this.hourlySales = [
+  this.minCust = minCust,
+  this.maxCust = maxCust,],
+  this.storeDailyTotal = 0,
 
   this.calcHourlySales();
   this.calcTotalSales();
@@ -48,7 +48,7 @@ Store.prototype.calcHourlySales = function () {
 }
 Store.prototype.calcTotalSales = function () {
   for (let i = 0; i < this.hourlySales.length; i++) {
-    this.totalSales += this.hourlySales[i];
+    this.storeDailyTotal += this.hourlySales[i];
   }
 }
 
@@ -67,10 +67,11 @@ Store.prototype.render = function () {
     tableRow.appendChild(tableCell);
 
     if (i === storeHours.length) {
-      tableCell.textContent = this.totalSales;
+      tableCell.textContent = this.storeDailyTotal;  // populates last cell with this stand's total sales for today
     } else tableCell.textContent = this.hourlySales[i];
-  
+    // console.log(`this.hourlySales[${i}] is ${this.hourlySales[i]}`);
     hourlyGrandTotal[i] += this.hourlySales[i];
+    // console.log(`current hourlyGrandTotal[${i}] is ${hourlyGrandTotal[i]}`)
   }
 }
 
@@ -80,7 +81,7 @@ function tableHeader(){
   // const
 }
 
-function tableFooter() {
+function tableFooter() { // create footer ROW OF TOTALS
   const tableRow = document.createElement("tr"); // create ROW
   salesSheet.appendChild(tableRow); 
   
@@ -89,17 +90,19 @@ function tableFooter() {
   tableRow.appendChild(rowHeader);
   rowHeader.textContent = "Totals";
   
+  
   for (let i = 0; i <= storeHours.length; i++) {  // create CELLS
     const tableCell = document.createElement("td");
     tableRow.appendChild(tableCell);
 
-    dailyGrandTotal += hourlyGrandTotal[i];
-
-    if (i === storeHours.length) {
+    if (i < storeHours.length) dailyGrandTotal += hourlyGrandTotal[i]; // prevents adding 'NaN' to dailyGrandTotal
+  
+    if (i === storeHours.length ) {
       tableCell.textContent = dailyGrandTotal; // All-store daily total
     } else tableCell.textContent = hourlyGrandTotal[i];
   }
 }
+
 const seattle = new Store("Seattle", 23, 65, 6.3);
 const tokyo = new Store("Tokyo", 3, 24, 1.2);
 const dubai = new Store("Dubai", 11, 38, 3.7);
