@@ -16,6 +16,9 @@ const storeHours = [
   "6pm",
   "7pm"
 ];
+const salesSheet = document.getElementById("sales-sheet"); // PARENT initialized to global
+let hourlyGrandTotal = [];
+let dailyGrandTotal = 0;
 
 function Store(location, minCust, maxCust, avgSoldPer) { // Construct FUNCTION
 
@@ -28,7 +31,7 @@ function Store(location, minCust, maxCust, avgSoldPer) { // Construct FUNCTION
 
   this.calcHourlySales();
   this.calcTotalSales();
-  this.buildSalesSheet();
+  this.render();
 
 } // END STOREBUILDER FUNCTION -- called at bottom of app.js
 
@@ -49,29 +52,57 @@ Store.prototype.calcTotalSales = function () {
   }
 }
 
-Store.prototype.buildSalesSheet = function () {
-  const salesSheet = document.getElementById("sales-sheet"); // Grab PARENT 
+Store.prototype.render = function () {
+  
+  const tableRow = document.createElement("tr"); // create ROW
+  salesSheet.appendChild(tableRow); 
 
-  const location = document.createElement("h2"); // Create HEADING
-  salesSheet.appendChild(location);
-  location.textContent = this.location;
+  const rowHeader = document.createElement("th"); // create row HEADER
+  rowHeader.setAttribute("scope", "row");
+  tableRow.appendChild(rowHeader);
+  rowHeader.textContent = this.location;
+  
+  for (let i = 0; i <= storeHours.length; i++) {  // create CELLS
+    const tableCell = document.createElement("td");
+    tableRow.appendChild(tableCell);
 
-  const listOfSales = document.createElement("ul"); // Create LIST
-  salesSheet.appendChild(listOfSales);
-
-  for (let i = 0; i < storeHours.length; i++) { // Create LIST ITEMS
-    const listElem = document.createElement("li");
-    let salesEntry = `${storeHours[i]}: ${this.hourlySales[i]} cookies`;
-    listOfSales.appendChild(listElem);
-    listElem.textContent = salesEntry;
+    if (i === storeHours.length) {
+      tableCell.textContent = this.totalSales;
+    } else tableCell.textContent = this.hourlySales[i];
+  
+    hourlyGrandTotal[i] += this.hourlySales[i];
   }
-  const totalCookies = document.createElement("li"); //  TOTAL
-  listOfSales.appendChild(totalCookies);
-  totalCookies.textContent = `Total: ${this.totalSales} cookies`;
 }
 
+function tableHeader(){
+  const tableRow = document.createElement("tr"); // create ROW
+  salesSheet.appendChild(tableRow); 
+  // const
+}
+
+function tableFooter() {
+  const tableRow = document.createElement("tr"); // create ROW
+  salesSheet.appendChild(tableRow); 
+  
+  const rowHeader = document.createElement("th"); // create row HEADER
+  rowHeader.setAttribute("scope", "row");
+  tableRow.appendChild(rowHeader);
+  rowHeader.textContent = "Totals";
+  
+  for (let i = 0; i <= storeHours.length; i++) {  // create CELLS
+    const tableCell = document.createElement("td");
+    tableRow.appendChild(tableCell);
+
+    dailyGrandTotal += hourlyGrandTotal[i];
+
+    if (i === storeHours.length) {
+      tableCell.textContent = dailyGrandTotal; // All-store daily total
+    } else tableCell.textContent = hourlyGrandTotal[i];
+  }
+}
 const seattle = new Store("Seattle", 23, 65, 6.3);
 const tokyo = new Store("Tokyo", 3, 24, 1.2);
 const dubai = new Store("Dubai", 11, 38, 3.7);
 const paris = new Store("Paris", 20, 38, 2.3);
 const lima = new Store("Lima", 2, 16, 4.6);
+tableFooter();
