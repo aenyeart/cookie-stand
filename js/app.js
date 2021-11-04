@@ -18,7 +18,7 @@ const storeHours = [
 ];
 const salesSheet = document.getElementById("sales-sheet"); // PARENT initialized to global
 
-let hourlyGrandTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // Prevents 'NaN' bug in row of totals
+let hourlyGrandTotal = [];
 let dailyGrandTotal = 0;
 
 function Store(location, minCust, maxCust, avgSoldPer) { // Construct FUNCTION
@@ -70,6 +70,9 @@ Store.prototype.render = function () {
     if (i === storeHours.length) {
       tableCell.textContent = this.storeDailyTotal; // populates last cell with this stand's total sales today
     } else tableCell.textContent = this.hourlySales[i];
+    if (hourlyGrandTotal[i] === undefined) {
+      hourlyGrandTotal[i] = 0;
+    } 
     hourlyGrandTotal[i] += this.hourlySales[i];
   }
 }
