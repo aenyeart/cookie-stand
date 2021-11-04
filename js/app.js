@@ -17,19 +17,21 @@ const storeHours = [
   "7pm"
 ];
 const salesSheet = document.getElementById("sales-sheet"); // PARENT initialized to global
-let hourlyGrandTotal = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+
+let hourlyGrandTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // Prevents 'NaN' bug in row of totals
 let dailyGrandTotal = 0;
 
 function Store(location, minCust, maxCust, avgSoldPer) { // Construct FUNCTION
 
-  this.location = location, 
-  this.avgSoldPer = avgSoldPer,
-  this.hourlySales = [
-  this.minCust = minCust,
-  this.maxCust = maxCust,],
-  this.storeDailyTotal = 0,
+  this.location = location,
+    this.avgSoldPer = avgSoldPer,
+    this.hourlySales = [],
+    this.minCust = minCust,
+    this.maxCust = maxCust,
+    this.storeDailyTotal = 0,
 
-  this.calcHourlySales();
+    this.calcHourlySales();
   this.calcTotalSales();
   this.render();
 
@@ -53,21 +55,21 @@ Store.prototype.calcTotalSales = function () {
 }
 
 Store.prototype.render = function () {
-  
+
   const tableRow = document.createElement("tr"); // create ROW
-  salesSheet.appendChild(tableRow); 
+  salesSheet.appendChild(tableRow);
 
   const rowHeader = document.createElement("th"); // create row HEADER
   rowHeader.setAttribute("scope", "row");
   tableRow.appendChild(rowHeader);
   rowHeader.textContent = this.location;
-  
-  for (let i = 0; i <= storeHours.length; i++) {  // create CELLS
+
+  for (let i = 0; i <= storeHours.length; i++) { // create CELLS
     const tableCell = document.createElement("td");
     tableRow.appendChild(tableCell);
 
     if (i === storeHours.length) {
-      tableCell.textContent = this.storeDailyTotal;  // populates last cell with this stand's total sales for today
+      tableCell.textContent = this.storeDailyTotal; // populates last cell with this stand's total sales for today
     } else tableCell.textContent = this.hourlySales[i];
     // console.log(`this.hourlySales[${i}] is ${this.hourlySales[i]}`);
     hourlyGrandTotal[i] += this.hourlySales[i];
@@ -75,34 +77,41 @@ Store.prototype.render = function () {
   }
 }
 
-function tableHeader(){
+function tableHeader() {
   const tableRow = document.createElement("tr"); // create ROW
-  salesSheet.appendChild(tableRow); 
-  // const
+  salesSheet.appendChild(tableRow);
+  tableRow.setAttribute("id", "sales-sheet-header");
+
+  for (let i = -1; i <= storeHours.length; i++) {
+
+    const colHeader = document.createElement("th"); // create row HEADER
+    tableRow.appendChild(colHeader);
+    colHeader.setAttribute("scope", "row");
+    if (i === -1) continue; // Leaves upper-left cell empty
+    if (i === storeHours.length) colHeader.textContent = "Daily Totals"; 
+    else colHeader.textContent = storeHours[i]; // Adds hours to header cells
+  }
 }
 
 function tableFooter() { // create footer ROW OF TOTALS
   const tableRow = document.createElement("tr"); // create ROW
-  salesSheet.appendChild(tableRow); 
-  
-  const rowHeader = document.createElement("th"); // create row HEADER
-  rowHeader.setAttribute("scope", "row");
-  tableRow.appendChild(rowHeader);
-  rowHeader.textContent = "Totals";
-  
-  
-  for (let i = 0; i <= storeHours.length; i++) {  // create CELLS
-    const tableCell = document.createElement("td");
-    tableRow.appendChild(tableCell);
+  salesSheet.appendChild(tableRow);
 
+  const rowHeader = document.createElement("th"); // create row HEADER
+  tableRow.appendChild(rowHeader);
+  rowHeader.setAttribute("scope", "row");
+  rowHeader.textContent = "Totals";
+
+  for (let i = 0; i <= storeHours.length; i++) { // create CELLS
+    const tableCell = document.createElement("th");
+    tableRow.appendChild(tableCell);
     if (i < storeHours.length) dailyGrandTotal += hourlyGrandTotal[i]; // prevents adding 'NaN' to dailyGrandTotal
-  
-    if (i === storeHours.length ) {
+    if (i === storeHours.length) {
       tableCell.textContent = dailyGrandTotal; // All-store daily total
     } else tableCell.textContent = hourlyGrandTotal[i];
   }
 }
-
+tableHeader();
 const seattle = new Store("Seattle", 23, 65, 6.3);
 const tokyo = new Store("Tokyo", 3, 24, 1.2);
 const dubai = new Store("Dubai", 11, 38, 3.7);

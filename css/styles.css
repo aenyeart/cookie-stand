@@ -1,3 +1,6 @@
 th, td {
   border: solid black 1px;
 }
+th {
+  font-weight: bold;
+}
