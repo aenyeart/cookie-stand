@@ -18,7 +18,6 @@ const storeHours = [
 ];
 const salesSheet = document.getElementById("sales-sheet"); // PARENT initialized to global
 
-
 let hourlyGrandTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // Prevents 'NaN' bug in row of totals
 let dailyGrandTotal = 0;
 
@@ -48,6 +47,7 @@ Store.prototype.calcHourlySales = function () {
     this.hourlySales[i] = Math.round(this.avgSoldPer * hourlyCust);
   }
 }
+
 Store.prototype.calcTotalSales = function () {
   for (let i = 0; i < this.hourlySales.length; i++) {
     this.storeDailyTotal += this.hourlySales[i];
@@ -55,7 +55,6 @@ Store.prototype.calcTotalSales = function () {
 }
 
 Store.prototype.render = function () {
-
   const tableRow = document.createElement("tr"); // create ROW
   salesSheet.appendChild(tableRow);
 
@@ -69,11 +68,9 @@ Store.prototype.render = function () {
     tableRow.appendChild(tableCell);
 
     if (i === storeHours.length) {
-      tableCell.textContent = this.storeDailyTotal; // populates last cell with this stand's total sales for today
+      tableCell.textContent = this.storeDailyTotal; // populates last cell with this stand's total sales today
     } else tableCell.textContent = this.hourlySales[i];
-    // console.log(`this.hourlySales[${i}] is ${this.hourlySales[i]}`);
     hourlyGrandTotal[i] += this.hourlySales[i];
-    // console.log(`current hourlyGrandTotal[${i}] is ${hourlyGrandTotal[i]}`)
   }
 }
 
@@ -111,6 +108,7 @@ function tableFooter() { // create footer ROW OF TOTALS
     } else tableCell.textContent = hourlyGrandTotal[i];
   }
 }
+
 tableHeader();
 const seattle = new Store("Seattle", 23, 65, 6.3);
 const tokyo = new Store("Tokyo", 3, 24, 1.2);
