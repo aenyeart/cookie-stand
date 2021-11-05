@@ -92,7 +92,11 @@ function tableHeader() {
     else colHeader.textContent = storeHours[i]; // Adds hours to header cells
   }
 }
-
+/**
+ * Ideas:
+ * - have tableFooter take `isNew` argument (true/false)
+ * - assign class or id to row or elements to access their text content directly 
+**/
 function tableFooter() { // create footer ROW OF TOTALS
   const tableRow = document.createElement("tr"); // create ROW
   salesSheet.appendChild(tableRow);
@@ -112,6 +116,16 @@ function tableFooter() { // create footer ROW OF TOTALS
   }
 }
 
+function addNewStore(event) {
+  event.preventDefault();
+  let newLoc = event.target[1].value;
+  let newMinCust = parseInt(event.target[2].value);
+  let newMaxCust = parseInt(event.target[3].value);
+  let newAvgSoldPer = parseFloat(event.target[4].value);
+  const newStore = new Store(newLoc, newMinCust, newMaxCust, newAvgSoldPer);
+  tableFooter();
+}
+
 tableHeader();
 const seattle = new Store("Seattle", 23, 65, 6.3);
 const tokyo = new Store("Tokyo", 3, 24, 1.2);
@@ -119,3 +133,6 @@ const dubai = new Store("Dubai", 11, 38, 3.7);
 const paris = new Store("Paris", 20, 38, 2.3);
 const lima = new Store("Lima", 2, 16, 4.6);
 tableFooter();
+
+const newStoreForm = document.getElementById("new-store-form");
+newStoreForm.addEventListener("submit", addNewStore);
