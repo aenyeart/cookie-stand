@@ -57,7 +57,7 @@ Store.prototype.calcTotalSales = function () {
 Store.prototype.render = function () {
   const tableRow = document.createElement("tr"); // create ROW
   salesSheet.appendChild(tableRow);
-  tableRow.setAttribute("id", `${this.location}`);
+  tableRow.setAttribute("id", `${this.location.toLowerCase()}`);
 
   const rowHeader = document.createElement("th"); // create row HEADER
   rowHeader.setAttribute("scope", "row");
@@ -119,18 +119,31 @@ function tableFooter() { // create footer ROW OF TOTALS
   }
 }
 
-function addNewStore(event) {
+function addNewStore(newLoc, newMinCust, newMaxCust, newAvgSoldPer) {
+  
+  let footerRow = document.getElementById('footer-row');  
+  salesSheet.removeChild(footerRow);  // REMOVES CURRENT TOTALS
+
+  new Store(newLoc, newMinCust, newMaxCust, newAvgSoldPer);
+
+  dailyGrandTotal = 0; // RESET AVOIDS DOUBLE-COUNTING INSIDE tableFooter()
+  tableFooter();
+}
+
+function formHandler(event) {
   event.preventDefault();
-  let footerRow = document.getElementById('footer-row');
-  salesSheet.removeChild(footerRow);
   let newLoc = event.target[1].value;
   let newMinCust = parseInt(event.target[2].value);
   let newMaxCust = parseInt(event.target[3].value);
   let newAvgSoldPer = parseFloat(event.target[4].value);
-  new Store(newLoc, newMinCust, newMaxCust, newAvgSoldPer);
+  
+  let locId = newLoc.toLowerCase();
 
-  dailyGrandTotal = 0;
-  tableFooter();
+  if (document.getElementById(locId) !== null) { // TESTS FOR TABLE ROW WITH CORRESPONDING ID
+    let oldDataRow = document.getElementById(locId); 
+    salesSheet.removeChild(oldDataRow);  // REMOVES CURRENT TOTALS 
+  }
+  addNewStore(newLoc, newMinCust, newMaxCust, newAvgSoldPer); // THIS WORKS, BUT IT NEEDS TO ITERATE THROUGH HOURLYTOTALS AND SUBRACT OLD VALUES BEFORE CALLING ADDNEWSTORE()
 }
 
 tableHeader();
@@ -142,4 +155,15 @@ const lima = new Store("Lima", 2, 16, 4.6);
 tableFooter();
 
 const newStoreForm = document.getElementById("new-store-form");
-newStoreForm.addEventListener("submit", addNewStore);
+newStoreForm.addEventListener("submit", formHandler);
+
+/*** STRETCH GOAL PSEUDOCODE
+ * User inputs existing location name
+ * comparison of location to arrayofobjects.location 
+ * if no match --> Make new
+ * else if match {
+ *    Delete corresponding row (grab by id)
+ *    update object values
+ * }  
+ *  Make new Store
+***/
