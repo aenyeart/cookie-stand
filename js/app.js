@@ -57,6 +57,7 @@ Store.prototype.calcTotalSales = function () {
 Store.prototype.render = function () {
   const tableRow = document.createElement("tr"); // create ROW
   salesSheet.appendChild(tableRow);
+  tableRow.setAttribute("id", `${this.location}`);
 
   const rowHeader = document.createElement("th"); // create row HEADER
   rowHeader.setAttribute("scope", "row");
@@ -96,10 +97,12 @@ function tableHeader() {
  * Ideas:
  * - have tableFooter take `isNew` argument (true/false)
  * - assign class or id to row or elements to access their text content directly 
+ * - set class (using location name) on each row in conjunction with .removeChild
 **/
 function tableFooter() { // create footer ROW OF TOTALS
   const tableRow = document.createElement("tr"); // create ROW
   salesSheet.appendChild(tableRow);
+  tableRow.setAttribute("id", "footer-row");
 
   const rowHeader = document.createElement("th"); // create row HEADER
   tableRow.appendChild(rowHeader);
@@ -118,11 +121,15 @@ function tableFooter() { // create footer ROW OF TOTALS
 
 function addNewStore(event) {
   event.preventDefault();
+  let footerRow = document.getElementById('footer-row');
+  salesSheet.removeChild(footerRow);
   let newLoc = event.target[1].value;
   let newMinCust = parseInt(event.target[2].value);
   let newMaxCust = parseInt(event.target[3].value);
   let newAvgSoldPer = parseFloat(event.target[4].value);
-  const newStore = new Store(newLoc, newMinCust, newMaxCust, newAvgSoldPer);
+  new Store(newLoc, newMinCust, newMaxCust, newAvgSoldPer);
+
+  dailyGrandTotal = 0;
   tableFooter();
 }
 
