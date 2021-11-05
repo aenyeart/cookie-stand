@@ -18,3 +18,6 @@ input {
 button {
   background-color: rgba(223, 68, 104, 0.427);
 }
+input:invalid {
+  border: solid rgb(243, 73, 73) 2px;
+}

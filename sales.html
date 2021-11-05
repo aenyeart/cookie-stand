@@ -18,17 +18,16 @@
       <legend>New Store Info</legend>
       
       <label for="location">City: </label>
-      <input type="text" name="location" id="location">
+      <input type="text" name="location" id="location" placeholder="City Name" required>
 
-      <label for="min-cust">Min Customers per Hour: </label>
-      <input type="text" name="minCust" id="min-cust">
+      <label for="min-cust">Min. Customers per Hour: </label>
+      <input type="number" name="minCust" id="min-cust" min="0" placeholder="#" required>
       
-      <label for="max-cust">Max Customers per Hour: </label>
-      <input type="text" name="maxCust" id="max-cust">
+      <label for="max-cust">Max. Customers per Hour: </label>
+      <input type="number" name="maxCust" id="max-cust" min="0" placeholder="#" required>
       
       <label for="avg-sold-per-cust">Average Cookies Sold per Customer: </label>
-
-      <input type="text" name="avgSoldPerCust" id="avg-sold-per-cust">
+      <input type="number" name="avgSoldPerCust" id="avg-sold-per-cust" min="0" step="0.1" placeholder="# " required>
 
       <button type="submit">SUBMIT! (or perish)</button>
       
