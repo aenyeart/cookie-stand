@@ -1,9 +1,211 @@
-th, td {
-  border: solid black 1px;
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Bangers&family=Carter+One&family=Damion&family=Fugaz+One&family=Monoton&family=Oleo+Script:wght@400;700&family=Pacifico&family=Patua+One&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Bangers&family=Carter+One&family=Damion&family=Fugaz+One&family=Monoton&family=Nunito:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&family=Oleo+Script:wght@400;700&family=Pacifico&family=Patua+One&family=Righteous&display=swap');
+
+:root {
+  --dk-pink: #f48d84ff;
+  --lt-pink: #feb5b7ff;
+  --cookie: #e5c89cff;
+  --light-neut: #e1dcd9ff;
+  --dark-neut: #333333ff;
+
+  font-size: 10px;
+  color: var(--dark-neut);
+  box-sizing: border-box;
 }
-th {
-  font-weight: bold;
+
+img {
+  max-width: 100%;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+  border: transparent solid 3px;
+}
+a:focus,
+a:hover {
+  color: var(--lt-pink);
+  border: dotted var(--cookie) 3px;
+}
+
+/* HOMEPAGE */
+body {
+  background-color: var(--lt-pink);
+  width: 85%;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.6rem;
+
+}
+
+header,
+footer {
+  background-color: var(--dark-neut);
+}
+
+header {
+  color: var(--dk-pink);
+  justify-content: space-between;
+  align-items: center;
+  min-height: 15rem;
+}
+
+header div {
+  width: 40%;
+  flex-direction: column;
+  align-items: space-around;
+  justify-content: space-around;
+  text-align: center;
+}
+
+nav {
+  width: 50%;
+  margin-right: 20px;
+}
+
+nav ul {
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+main {
+  background-color: var(--lt-pink);
+}
+.flex {
+  display: flex;
+}
+
+.full {
+  width: 100%;
+}
+
+/* FONTS:
+font-family: 'Allura', cursive;
+font-family: 'Bangers', cursive;
+font-family: 'Carter One', cursive;
+font-family: 'Damion', cursive;
+font-family: 'Fugaz One', cursive;
+font-family: 'Monoton', cursive;
+font-family: 'Oleo Script', cursive;
+font-family: 'Pacifico', cursive;
+font-family: 'Patua One', cursive;
+font-family: 'Righteous', cursive;
+*/
+
+.font-special {
+  font-family: 'Damion', cursive;
+}
+
+.font-tagline {
+  /* font-family: 'Fugaz One', cursive; */
+  font-family: 'Pacifico', sans-serif;
+
+
+}
+
+.font-main {
+  font-family: 'Nunito', sans-serif;
+}
+
+h1 {
+  font-size: 5rem;
+  line-height: 1.1em;
+  /* padding-bottom: 10px; */
+}
+h3, h4 {
+  font-family: 'Fugaz One', cursive;
+
+}
+h3 {
+  font-size: 1.8rem;
+  line-height: 1.2;
+  margin: 1.1em auto;
+  text-align: center;
+}
+header h3 {
+  font-size: 1.5rem;
+  line-height: 1.7;
+}
+strong {
+  font-weight: 700;
+}
+#hero {
+  /* flex: 1 1 0; */
+  justify-content: center;
+  align-items: center;
+}
+#hero img {
+  padding: 30px 0;
+}
+#locations {
+  padding: 5px 0 35px 0;
+}
+#locations div {
+  gap: 15px;
+  justify-content: space-evenly;
+  /* flex: 1 1 15%; */
+
+}
+#locations ul {
+  /* border-radius: 5px; */
+  border-left: 2px solid var(--dk-pink);
+  border-top: 2px solid var(--dk-pink);
+}
+#locations address :hover {
+  background-color: var(--dk-pink);
+}
+#about {
+  gap: 15px;
+  flex-flow: column wrap;
+  padding-bottom: 60px;
+
+}
+#about div {
+  width: 100%;
+  /* border: solid black 1px; */
+  align-items: top;
+  flex-direction: row;
+  gap: 15px;
+}
+.blurb {
+  max-width: 60%;
+}
+#merch {
+  padding-bottom: 30px;
+}
+#merch div.flex {
+  justify-content: space-between;
+  /* gap: 20px; */
+}
+.merch-item {
+  width: 30%;
+
+}
+.merch-item p {
+  padding: 10px 0;
+}
+footer {
+  height: 100px;
+  justify-content: center;
+  flex-direction: column;
+}
+footer div {
+}
+footer p {
+  text-align: center;
+  color: var(--dk-pink);
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+/* SALES.HTML */
+
+td {
+  border: solid 1px var(--dark-neut);
+}
+
 fieldset {
   margin-top: 40px;
   width: 30%;
@@ -11,6 +213,7 @@ fieldset {
   flex-direction: column;
   gap: 10px;
 }
+
 input {
   width: 40%;
 }
@@ -18,6 +221,8 @@ input {
 button {
   background-color: rgba(223, 68, 104, 0.427);
 }
+
 input:invalid {
   border: solid rgb(243, 73, 73) 2px;
 }
+
