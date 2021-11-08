@@ -7,7 +7,10 @@
   --light-neut: #e1dcd9ff;
   --dark-neut: #333333ff;
 }
-
+ul{
+  /* list-style: none; */
+  list-style-position: inside;
+}
 th,
 td {
   border: solid black 1px;
