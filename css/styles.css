@@ -142,11 +142,12 @@ h3, h4 {
 h3 {
   font-size: 1.6rem;
   line-height: 1.2;
-  margin: 1em auto;
+  margin: 1.1em auto;
   text-align: center;
 }
 header h3 {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
+  line-height: 1.7;
 }
 
 #hero {
@@ -157,10 +158,14 @@ header h3 {
 #hero img {
   padding: 30px 0;
 }
+#locations {
+  padding: 5px 0 35px 0;
+}
 #locations div {
   gap: 15px;
   justify-content: space-evenly;
-  flex: 1 1 15%;
+  /* flex: 1 1 15%; */
+
 }
 #locations ul {
   /* border-radius: 5px; */
@@ -168,7 +173,21 @@ header h3 {
   border-top: 2px solid var(--dk-pink);
 }
 #locations address :hover {
-  /* border-bottom: 2px solid var(--cookie);
-  border-right: 2px solid var(--cookie); */
   background-color: var(--dk-pink);
+}
+#about {
+  gap: 15px;
+  flex-flow: column wrap;
+  padding-bottom: 60px;
+
+}
+#about div {
+  width: 100%;
+  /* border: solid black 1px; */
+  align-items: top;
+  flex-direction: row;
+  gap: 15px;
+}
+.blurb {
+  max-width: 60%;
 }
