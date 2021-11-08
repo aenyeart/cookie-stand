@@ -9,10 +9,21 @@
   --dark-neut: #333333ff;
 
   font-size: 10px;
+  color: var(--dark-neut);
 }
+
+img {
+  max-width: 100%;
+}
+
 a {
   text-decoration: none;
   color: inherit;
+}
+
+a:focus,
+a:hover {
+  color: var(--lt-pink);
 }
 
 /* SALES.HTML */
@@ -38,38 +49,47 @@ input:invalid {
 
 /* HOMEPAGE */
 body {
-  background-color: var(--light-neut);
+  background-color: var(--lt-pink);
   width: 85%;
-  /* max-width: 900px; */
   margin: 0 auto;
   font-family: 'Nunito', sans-serif;
   font-size: 1.6rem;
-  
+
 }
-header, footer {
+
+header,
+footer {
   background-color: var(--dark-neut);
 }
+
 header {
   color: var(--dk-pink);
   justify-content: space-between;
   align-items: center;
   min-height: 15rem;
 }
+
 header div {
-width: 40%;
-flex-direction: column;
-align-items: space-around;
-justify-content: space-around;
-text-align: center;
-}
-nav {
   width: 40%;
+  flex-direction: column;
+  align-items: space-around;
+  justify-content: space-around;
+  text-align: center;
+}
+
+nav {
+  width: 50%;
   margin-right: 20px;
 }
+
 nav ul {
   justify-content: space-between;
-  /* gap: 30px; */
+  gap: 15px;
   flex-wrap: wrap;
+}
+
+main {
+  background-color: var(--lt-pink);
 }
 .flex {
   display: flex;
@@ -78,6 +98,7 @@ nav ul {
 .full {
   width: 100%;
 }
+
 /* FONTS:
 font-family: 'Allura', cursive;
 font-family: 'Bangers', cursive;
@@ -94,10 +115,12 @@ font-family: 'Righteous', cursive;
 .font-special {
   font-family: 'Damion', cursive;
 }
+
 .font-tagline {
   font-family: 'Fugaz One', cursive;
 
 }
+
 .font-main {
   font-family: 'Nunito', sans-serif;
 }
@@ -107,7 +130,19 @@ h1 {
   line-height: 1.1em;
   /* padding-bottom: 10px; */
 }
+
 h3 {
-  line-height: 1.2em;
+  font-size: 1.3rem;
+  line-height: 1.2;
   margin: 15px auto;
+}
+
+#hero {
+  /* flex: 1 1 0; */
+  justify-content: center;
+  align-items: center;
+  
+}
+#hero img {
+  padding: 30px 0;
 }
