@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Damion&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Bangers&family=Carter+One&family=Damion&family=Fugaz+One&family=Monoton&family=Oleo+Script:wght@400;700&family=Pacifico&family=Patua+One&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Bangers&family=Carter+One&family=Damion&family=Fugaz+One&family=Monoton&family=Nunito:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&family=Oleo+Script:wght@400;700&family=Pacifico&family=Patua+One&family=Righteous&display=swap');
 
 :root {
   --dk-pink: #f48d84ff;
@@ -6,20 +7,15 @@
   --cookie: #e5c89cff;
   --light-neut: #e1dcd9ff;
   --dark-neut: #333333ff;
+
+  font-size: 10px;
 }
-ul{
-  /* list-style: none; */
-  list-style-position: inside;
-}
-th,
-td {
-  border: solid black 1px;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-th {
-  font-weight: bold;
-}
-
+/* SALES.HTML */
 fieldset {
   margin-top: 40px;
   width: 30%;
@@ -38,4 +34,80 @@ button {
 
 input:invalid {
   border: solid rgb(243, 73, 73) 2px;
+}
+
+/* HOMEPAGE */
+body {
+  background-color: var(--light-neut);
+  width: 85%;
+  /* max-width: 900px; */
+  margin: 0 auto;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.6rem;
+  
+}
+header, footer {
+  background-color: var(--dark-neut);
+}
+header {
+  color: var(--dk-pink);
+  justify-content: space-between;
+  align-items: center;
+  min-height: 15rem;
+}
+header div {
+width: 40%;
+flex-direction: column;
+align-items: space-around;
+justify-content: space-around;
+text-align: center;
+}
+nav {
+  width: 40%;
+  margin-right: 20px;
+}
+nav ul {
+  justify-content: space-between;
+  /* gap: 30px; */
+  flex-wrap: wrap;
+}
+.flex {
+  display: flex;
+}
+
+.full {
+  width: 100%;
+}
+/* FONTS:
+font-family: 'Allura', cursive;
+font-family: 'Bangers', cursive;
+font-family: 'Carter One', cursive;
+font-family: 'Damion', cursive;
+font-family: 'Fugaz One', cursive;
+font-family: 'Monoton', cursive;
+font-family: 'Oleo Script', cursive;
+font-family: 'Pacifico', cursive;
+font-family: 'Patua One', cursive;
+font-family: 'Righteous', cursive;
+*/
+
+.font-special {
+  font-family: 'Damion', cursive;
+}
+.font-tagline {
+  font-family: 'Fugaz One', cursive;
+
+}
+.font-main {
+  font-family: 'Nunito', sans-serif;
+}
+
+h1 {
+  font-size: 5rem;
+  line-height: 1.1em;
+  /* padding-bottom: 10px; */
+}
+h3 {
+  line-height: 1.2em;
+  margin: 15px auto;
 }
