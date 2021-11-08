@@ -149,7 +149,9 @@ header h3 {
   font-size: 1.5rem;
   line-height: 1.7;
 }
-
+strong {
+  font-weight: 700;
+}
 #hero {
   /* flex: 1 1 0; */
   justify-content: center;
@@ -190,4 +192,18 @@ header h3 {
 }
 .blurb {
   max-width: 60%;
+}
+#merch {
+  padding-bottom: 30px;
+}
+#merch div.flex {
+  justify-content: space-between;
+  /* gap: 20px; */
+}
+.merch-item {
+  width: 30%;
+
+}
+.merch-item p {
+  padding: 10px 0;
 }
