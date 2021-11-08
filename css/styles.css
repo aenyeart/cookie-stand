@@ -28,27 +28,6 @@ a:hover {
   border: dotted var(--cookie) 3px;
 }
 
-/* SALES.HTML */
-fieldset {
-  margin-top: 40px;
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-input {
-  width: 40%;
-}
-
-button {
-  background-color: rgba(223, 68, 104, 0.427);
-}
-
-input:invalid {
-  border: solid rgb(243, 73, 73) 2px;
-}
-
 /* HOMEPAGE */
 body {
   background-color: var(--lt-pink);
@@ -140,7 +119,7 @@ h3, h4 {
 
 }
 h3 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   line-height: 1.2;
   margin: 1.1em auto;
   text-align: center;
@@ -207,3 +186,43 @@ strong {
 .merch-item p {
   padding: 10px 0;
 }
+footer {
+  height: 100px;
+  justify-content: center;
+  flex-direction: column;
+}
+footer div {
+}
+footer p {
+  text-align: center;
+  color: var(--dk-pink);
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+/* SALES.HTML */
+
+td {
+  border: solid 1px var(--dark-neut);
+}
+
+fieldset {
+  margin-top: 40px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  width: 40%;
+}
+
+button {
+  background-color: rgba(223, 68, 104, 0.427);
+}
+
+input:invalid {
+  border: solid rgb(243, 73, 73) 2px;
+}
+
